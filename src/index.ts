@@ -36,7 +36,7 @@ const route = app
     media.writeHttpMetadata(headers)
     headers.set("etag", media.etag)
 
-    return new Response(media.body, {
+    return c.body(media.body, {
       headers: headers,
     })
   })
