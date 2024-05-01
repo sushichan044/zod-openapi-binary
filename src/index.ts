@@ -35,10 +35,13 @@ const route = app
     const headers = new Headers()
     media.writeHttpMetadata(headers)
     headers.set("etag", media.etag)
-
     return c.body(media.body, {
       headers: headers,
     })
+
+    // if use this, there is no type error!
+    // Maybe inferred as HandlerTypedResponse<OutputType<R>> in zod-openapi/src/index.ts line 176-202
+    // return c.json({}, 200)
   })
   .doc("/doc", {
     info: {
